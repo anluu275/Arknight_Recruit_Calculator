@@ -18,12 +18,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Compare_Tags.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Generate_Tag.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tags.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

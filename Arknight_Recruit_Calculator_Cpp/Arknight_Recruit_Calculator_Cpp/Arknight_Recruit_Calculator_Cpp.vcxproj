@@ -138,8 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Compare_Tags.cpp" />
-    <ClCompile Include="Generate_Tag.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="tags.cpp" />
   </ItemGroup>

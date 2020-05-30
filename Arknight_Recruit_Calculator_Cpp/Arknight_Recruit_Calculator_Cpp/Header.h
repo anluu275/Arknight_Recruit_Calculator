@@ -9,6 +9,4 @@
 
 using namespace std;
 
-unordered_map<string, int> compare_Tags(unordered_map<string, int> tag1, unordered_map<string, int> tag2);
-
 #endif // !HEADER_H_
