@@ -26,11 +26,14 @@ namespace Arknight_Recruit_Calculator
         List<Character> survival = new List<Character>();
         List<Character> debuff = new List<Character>();
         List<Character> healing = new List<Character>();
+
+        public List<string> user_input = new List<String>();
         public Dictionary<string, List<Character>> dict = new Dictionary<string, List<Character>>();
 
         public MainWindowViewModel()
         {
             //Hard coded tags 
+            #region tags
             #region guard
             guard.Add(new Character("Specter", 5));
             guard.Add(new Character("Indra", 5));
@@ -95,10 +98,8 @@ namespace Arknight_Recruit_Calculator
             healing.Add(new Character("Ansel", 3));
             healing.Add(new Character("Lancet-2", 2));
             #endregion healing
-
-
-
-
+            #endregion tags
+            //Dict of tags, Used to access tags via comparison from user_input list of strings
             #region dict
             dict.Add("guard", guard);
             dict.Add("dps", dps);
@@ -109,21 +110,43 @@ namespace Arknight_Recruit_Calculator
         }
 
         #region function
+
+
+
         List<Character> compare_tags(List<Character> tag1, List<Character> tag2)
         {
             List<Character> tag3 = new List<Character>();
-            List<Character> bigTag = new List<Character>();
-            List<Character> smallTag = new List<Character>();
 
-
-
-            bigTag = (tag1.Count > tag2.Count) ? tag1 : tag2;
-            smallTag = (tag1.Count > tag2.Count) ? tag2 : tag1;
-
-
+            for (int i = 0; i < tag1.Count; ++i)
+            {
+                for (int x = 0; x < tag2.Count; ++x)
+                {
+                    if (tag1[i].OP_Name == tag2[x].OP_Name)
+                    {
+                        tag3.Add(new Character(tag1[i].OP_Name, tag1[i].Star_Rarity));
+                    }
+                }
+            }
             return tag3;
         }
 
+        void generate_tags(List<string> user_input)
+        {
+
+
+        }
         #endregion function
+
+        #region Commands
+
+        private void check_List(string viewparam)
+        {
+
+
+        }
+
+        #endregion Commands
+
+
     }
 }
