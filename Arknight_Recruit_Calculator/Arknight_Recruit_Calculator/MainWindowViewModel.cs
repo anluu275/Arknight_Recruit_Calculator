@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Arknight_Recruit_Calculator
 {
@@ -21,19 +22,26 @@ namespace Arknight_Recruit_Calculator
     public class MainWindowViewModel : BaseViewModel
     {
         //recruitment tags
+        #region tags
         List<Character> guard = new List<Character>();
         List<Character> dps = new List<Character>();
         List<Character> survival = new List<Character>();
         List<Character> debuff = new List<Character>();
         List<Character> healing = new List<Character>();
+        #endregion tags
 
-        public List<string> user_input = new List<String>();
+        //Dictionary for tag access
         public Dictionary<string, List<Character>> dict = new Dictionary<string, List<Character>>();
+        
+        //Dictionary of tag buttons for UI
+        public Dictionary<string, bool> ui_Buttons = new Dictionary<string, bool>();
+        public List<string> user_input = new List<String>();
 
+        private ICommand _checkCommand;
         public MainWindowViewModel()
         {
             //Hard coded tags 
-            #region tags
+            #region Initialize tags
             #region guard
             guard.Add(new Character("Specter", 5));
             guard.Add(new Character("Indra", 5));
@@ -98,7 +106,7 @@ namespace Arknight_Recruit_Calculator
             healing.Add(new Character("Ansel", 3));
             healing.Add(new Character("Lancet-2", 2));
             #endregion healing
-            #endregion tags
+            #endregion Initialize tags
             //Dict of tags, Used to access tags via comparison from user_input list of strings
             #region dict
             dict.Add("guard", guard);
@@ -110,9 +118,11 @@ namespace Arknight_Recruit_Calculator
         }
 
         #region function
+        void generate_tags(List<string> user_input)
+        {
 
 
-
+        }
         List<Character> compare_tags(List<Character> tag1, List<Character> tag2)
         {
             List<Character> tag3 = new List<Character>();
@@ -129,20 +139,33 @@ namespace Arknight_Recruit_Calculator
             }
             return tag3;
         }
-
-        void generate_tags(List<string> user_input)
-        {
-
-
-        }
         #endregion function
 
         #region Commands
 
-        private void check_List(string viewparam)
+        public ICommand CheckCommand
         {
-
-
+            get
+            {
+                if (_checkCommand == null)
+                {
+                    _checkCommand = new DoCommand<string>(CheckFunction);
+                }
+                return _checkCommand;
+            }
+        }
+        private void CheckFunction(string viewparam)
+        {
+            if (ui_Buttons[viewparam] == false)
+                ui_Buttons[viewparam] = true;
+            else
+                ui_Buttons[viewparam] = false;
+            foreach (KeyValuePair<string,bool> entry in ui_Buttons)
+            {
+                if (entry.Value)
+                    user_input.Add(entry.Key);
+            }
+            //run generate tag function
         }
 
         #endregion Commands
