@@ -10,6 +10,8 @@ private:
 
 	// Tags are arraged by {OP_Name, Star_Rarity}
 
+
+
 	unordered_map<string, int>	guard = { {"Specter", 5}, {"Indra", 5}, {"Doberman", 4},
 											  {"Estelle", 4}, {"Mousse", 4}, {"Frostleaf", 4},
 											  {"Matoimaru",4}, {"Melantha", 3}, {"Castle-3", 2} };

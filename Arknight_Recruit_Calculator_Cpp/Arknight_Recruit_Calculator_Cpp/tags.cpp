@@ -13,9 +13,12 @@ void tags::generate_Tags(vector<string> input)
 {
 	for (int a = 0; a < input.size(); ++a)
 	{
-		cout << "[ " << input[a] << " ]" << endl;
-		print_tag(dict[input[a]]);
-		cout << endl;
+		if (!dict[input[a]].empty())
+		{
+			cout << "[ " << input[a] << " ]" << endl;
+			print_tag(dict[input[a]]);
+			cout << endl;
+		}
 		for (int b = a + 1; b < input.size(); ++b)
 		{
 			unordered_map<string, int> ab = compare_Tags(dict[input[a]], dict[input[b]]);
@@ -27,19 +30,15 @@ void tags::generate_Tags(vector<string> input)
 			}
 			for (int c =  b + 1; c < input.size(); ++c)
 			{
-				if (ab.empty())
-					break;
-				else
-					if (!compare_Tags(ab, dict[input[c]]).empty())
-					{
-						cout << "[ " << input[a] << " + " << input[b] << " + " << input[c] << " ]" << endl;
-						print_tag(compare_Tags(ab, dict[input[c]]));
-						cout << endl;
-					}
+				if (!ab.empty() && !compare_Tags(ab, dict[input[c]]).empty())
+				{
+					cout << "[ " << input[a] << " + " << input[b] << " + " << input[c] << " ]" << endl;
+					print_tag(compare_Tags(ab, dict[input[c]]));
+					cout << endl;
+				}
 			}
 		}
 	}
-
 }
 
 unordered_map<string, int> tags::compare_Tags(unordered_map<string, int> tag1, unordered_map<string, int> tag2)
