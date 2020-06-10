@@ -32,7 +32,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="2" Content="Guard" />
-
+        <Button Grid.Column="1" Grid.Row="2" Content="guard"    Command="{Binding CheckCommand}" CommandParameter="guard"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="debuff"   Command="{Binding CheckCommand}" CommandParameter="debuff"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="dps"      Command="{Binding CheckCommand}" CommandParameter="dps"/>
+        <Button Grid.Column="1" Grid.Row="5" Content="survival" Command="{Binding CheckCommand}" CommandParameter="survival"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="healing"  Command="{Binding CheckCommand}" CommandParameter="healing"/>
+        <TextBlock x:Name="resultBox" Grid.Column="5" Grid.Row="5" Margin="0,0,0,5" Width="200" Height="200" Text="{Binding StringResult, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

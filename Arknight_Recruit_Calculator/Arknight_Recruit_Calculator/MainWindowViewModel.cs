@@ -31,12 +31,29 @@ namespace Arknight_Recruit_Calculator
         #endregion tags
 
         //Dictionary for tag access
-        public Dictionary<string, List<Character>> dict = new Dictionary<string, List<Character>>();
-        
-        //Dictionary of tag buttons for UI
-        public Dictionary<string, bool> ui_Buttons = new Dictionary<string, bool>();
-        public List<string> user_input = new List<String>();
+        private Dictionary<string, List<Character>> recruit_tags = new Dictionary<string, List<Character>>();
 
+        //Dictionary of tag buttons for UI
+        private Dictionary<string, bool> ui_Buttons = new Dictionary<string, bool>();
+        private List<string> results = new List<string>();
+        private string _stringResult;
+
+        #region Properties
+
+        public string StringResult
+        {
+            get
+            {
+                return _stringResult;
+            }
+            set
+            {
+                _stringResult = value;
+                OnPropertyChanged(nameof(StringResult));
+            }
+        }
+
+        #endregion Properties
         private ICommand _checkCommand;
         public MainWindowViewModel()
         {
@@ -108,20 +125,77 @@ namespace Arknight_Recruit_Calculator
             #endregion healing
             #endregion Initialize tags
             //Dict of tags, Used to access tags via comparison from user_input list of strings
-            #region dict
-            dict.Add("guard", guard);
-            dict.Add("dps", dps);
-            dict.Add("survival", survival);
-            dict.Add("debuff", debuff);
-            dict.Add("healing", healing);
-            #endregion dict
+            #region recruit_tags
+            recruit_tags.Add("guard", guard);
+            recruit_tags.Add("dps", dps);
+            recruit_tags.Add("survival", survival);
+            recruit_tags.Add("debuff", debuff);
+            recruit_tags.Add("healing", healing);
+            #endregion recruit_tags
         }
 
         #region function
         void generate_tags(List<string> user_input)
         {
+            string line;
+            for (int a = 0; a < user_input.Count; ++a)
+            {
+                if (recruit_tags[user_input[a]].Count > 0)
+                {
+                    line = "[ " + user_input[a] + " ]";
+                    results.Add(line);
+                    results.Add(result_To_List(recruit_tags[user_input[a]]));
+                    line = "";
+                }
+                for (int b = a + 1; b < user_input.Count; ++b)
+                {
+                    List<Character> ab = new List<Character>();
+                    ab = compare_tags(recruit_tags[user_input[a]], recruit_tags[user_input[b]]);
+                    if (ab.Count > 0)
+                    {
+                        line = "[ " + user_input[a] + " + " + user_input[b] +  " ]";
+                        results.Add(line);
+                        results.Add(result_To_List(ab));
+                        line = "";
+                    }
+                    for (int c = b + 1; c < user_input.Count; ++c)
+                    {
+                        List<Character> abc = new List<Character>();
+                        abc = compare_tags(ab, recruit_tags[user_input[c]]);
+                        if (abc.Count > 0)
+                        {
+                            line = "[ " + user_input[a] + " + " + user_input[b] + " + " + user_input[c] + " ]";
+                            results.Add(line);
+                            results.Add(result_To_List(abc));
+                            line = "";
+                        }
+                    }
+                }
+            }
+        }
 
+        string result_To_List(List<Character> tag)
+        {
+            string results = "";
 
+            for (int i = 0; i < tag.Count - 1; ++i)
+            {
+                results += tag[i].OP_Name + " , ";
+            }
+            results += tag[tag.Count - 1].OP_Name;
+            return results;
+        }
+
+        string result_To_String(List<string> results)
+        {
+            string resultString = "";
+
+            for (int i = 0; i < results.Count; ++i)
+            {
+                resultString += results[i] + "\n";
+            }
+
+            return resultString;
         }
         List<Character> compare_tags(List<Character> tag1, List<Character> tag2)
         {
@@ -156,16 +230,18 @@ namespace Arknight_Recruit_Calculator
         }
         private void CheckFunction(string viewparam)
         {
-            if (ui_Buttons[viewparam] == false)
-                ui_Buttons[viewparam] = true;
+            List<string> user_input = new List<string>();
+            if (!ui_Buttons.ContainsKey(viewparam))
+                ui_Buttons.Add(viewparam, true);
             else
                 ui_Buttons[viewparam] = false;
             foreach (KeyValuePair<string,bool> entry in ui_Buttons)
             {
-                if (entry.Value)
+                if (entry.Value == true)
                     user_input.Add(entry.Key);
             }
-            //run generate tag function
+            generate_tags(user_input);
+            StringResult = result_To_String(results);
         }
 
         #endregion Commands

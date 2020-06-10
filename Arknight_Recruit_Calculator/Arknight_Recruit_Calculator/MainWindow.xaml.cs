@@ -23,6 +23,7 @@ namespace Arknight_Recruit_Calculator
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }
