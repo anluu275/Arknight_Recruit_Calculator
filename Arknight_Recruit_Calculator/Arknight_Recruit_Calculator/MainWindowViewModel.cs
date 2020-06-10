@@ -54,7 +54,6 @@ namespace Arknight_Recruit_Calculator
         //Dictionary of tag buttons for UI
         private Dictionary<string, bool> ui_Buttons = new Dictionary<string, bool>();
         StringBuilder sb = new StringBuilder();
-        private List<string> results = new List<string>();
         private string _stringResult;
 
         #region Properties
@@ -185,7 +184,6 @@ namespace Arknight_Recruit_Calculator
                 }
             }
         }
-
         string tagList_To_String(List<Character> tag)
         {
             string results = "";
@@ -197,18 +195,6 @@ namespace Arknight_Recruit_Calculator
             results += tag[tag.Count - 1].OP_Name;
             return results;
         }
-
-        string result_To_String(List<string> results)
-        {
-            string resultString = "";
-
-            for (int i = 0; i < results.Count; ++i)
-            {
-                resultString += results[i] + "\n";
-            }
-
-            return resultString;
-        }
         List<Character> compare_tags(List<Character> tag1, List<Character> tag2)
         {
             List<Character> tag3 = new List<Character>();
@@ -216,9 +202,7 @@ namespace Arknight_Recruit_Calculator
             for (int i = 0; i < tag1.Count; ++i)
             {
                 if (tag2.Contains(tag1[i]))
-                {
                     tag3.Add(new Character(tag1[i].OP_Name, tag1[i].Star_Rarity));
-                }
             }
             return tag3;
         }
@@ -240,15 +224,26 @@ namespace Arknight_Recruit_Calculator
         private void CheckFunction(string viewparam)
         {
             List<string> user_input = new List<string>();
+
             if (!ui_Buttons.ContainsKey(viewparam))
+            {
                 ui_Buttons.Add(viewparam, true);
+            }
+            else if (ui_Buttons[viewparam] == false)
+            {
+                ui_Buttons[viewparam] = true;
+            }
             else
+            {
                 ui_Buttons[viewparam] = false;
+            }
+
             foreach (KeyValuePair<string,bool> entry in ui_Buttons)
             {
                 if (entry.Value == true)
                     user_input.Add(entry.Key);
             }
+
             generate_tags(user_input);
             StringResult = sb.ToString();
         }
