@@ -1,5 +1,7 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +9,7 @@ using System.Windows.Input;
 
 namespace Arknight_Recruit_Calculator
 {
-    public class Character
+    public class Character : IEquatable<Character>
     {
         public string OP_Name { get; set; }
         public int Star_Rarity { get; set; }
@@ -17,6 +19,22 @@ namespace Arknight_Recruit_Calculator
             OP_Name = name;
             Star_Rarity = star;
         }
+
+        public bool Equals(Character other)
+        {
+            return this.OP_Name.Equals(other.OP_Name) && this.Star_Rarity.Equals(other.Star_Rarity);
+        }
+
+        public static bool operator== (Character a, Character b)
+        {
+            return a.OP_Name.Equals(b.OP_Name) && a.Star_Rarity.Equals(b.Star_Rarity);
+        }
+
+        public static bool operator!= (Character a, Character b)
+        {
+            return !(a==b);
+        }
+
     }
 
     public class MainWindowViewModel : BaseViewModel
@@ -35,6 +53,7 @@ namespace Arknight_Recruit_Calculator
 
         //Dictionary of tag buttons for UI
         private Dictionary<string, bool> ui_Buttons = new Dictionary<string, bool>();
+        StringBuilder sb = new StringBuilder();
         private List<string> results = new List<string>();
         private string _stringResult;
 
@@ -137,15 +156,12 @@ namespace Arknight_Recruit_Calculator
         #region function
         void generate_tags(List<string> user_input)
         {
-            string line;
             for (int a = 0; a < user_input.Count; ++a)
             {
                 if (recruit_tags[user_input[a]].Count > 0)
                 {
-                    line = "[ " + user_input[a] + " ]";
-                    results.Add(line);
-                    results.Add(result_To_List(recruit_tags[user_input[a]]));
-                    line = "";
+                    sb.Append( "[ " + user_input[a] + " ]\n");
+                    sb.Append(tagList_To_String(recruit_tags[user_input[a]]) + "\n");
                 }
                 for (int b = a + 1; b < user_input.Count; ++b)
                 {
@@ -153,10 +169,8 @@ namespace Arknight_Recruit_Calculator
                     ab = compare_tags(recruit_tags[user_input[a]], recruit_tags[user_input[b]]);
                     if (ab.Count > 0)
                     {
-                        line = "[ " + user_input[a] + " + " + user_input[b] +  " ]";
-                        results.Add(line);
-                        results.Add(result_To_List(ab));
-                        line = "";
+                        sb.Append( "[ " + user_input[a] + " + " + user_input[b] +  " ]\n");
+                        sb.Append(tagList_To_String(ab) + "\n");
                     }
                     for (int c = b + 1; c < user_input.Count; ++c)
                     {
@@ -164,17 +178,15 @@ namespace Arknight_Recruit_Calculator
                         abc = compare_tags(ab, recruit_tags[user_input[c]]);
                         if (abc.Count > 0)
                         {
-                            line = "[ " + user_input[a] + " + " + user_input[b] + " + " + user_input[c] + " ]";
-                            results.Add(line);
-                            results.Add(result_To_List(abc));
-                            line = "";
+                            sb.Append("[ " + user_input[a] + " + " + user_input[b] + " + " + user_input[c] + " ]\n");
+                            sb.Append(tagList_To_String(abc) + "\n");
                         }
                     }
                 }
             }
         }
 
-        string result_To_List(List<Character> tag)
+        string tagList_To_String(List<Character> tag)
         {
             string results = "";
 
@@ -203,12 +215,9 @@ namespace Arknight_Recruit_Calculator
 
             for (int i = 0; i < tag1.Count; ++i)
             {
-                for (int x = 0; x < tag2.Count; ++x)
+                if (tag2.Contains(tag1[i]))
                 {
-                    if (tag1[i].OP_Name == tag2[x].OP_Name)
-                    {
-                        tag3.Add(new Character(tag1[i].OP_Name, tag1[i].Star_Rarity));
-                    }
+                    tag3.Add(new Character(tag1[i].OP_Name, tag1[i].Star_Rarity));
                 }
             }
             return tag3;
@@ -241,7 +250,7 @@ namespace Arknight_Recruit_Calculator
                     user_input.Add(entry.Key);
             }
             generate_tags(user_input);
-            StringResult = result_To_String(results);
+            StringResult = sb.ToString();
         }
 
         #endregion Commands
