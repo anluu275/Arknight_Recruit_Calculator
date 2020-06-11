@@ -32,11 +32,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Button Grid.Column="1" Grid.Row="2" Content="guard"    Command="{Binding CheckCommand}" CommandParameter="guard"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="debuff"   Command="{Binding CheckCommand}" CommandParameter="debuff"/>
-        <Button Grid.Column="1" Grid.Row="4" Content="dps"      Command="{Binding CheckCommand}" CommandParameter="dps"/>
-        <Button Grid.Column="1" Grid.Row="5" Content="survival" Command="{Binding CheckCommand}" CommandParameter="survival"/>
-        <Button Grid.Column="1" Grid.Row="4" Content="healing"  Command="{Binding CheckCommand}" CommandParameter="healing"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Arknight Recruit Calculator" Margin ="5,0,5,0" Padding="150,0,150,0" FontSize="25" FontWeight="SemiBold" Background="Aquamarine" HorizontalAlignment="Center" Grid.ColumnSpan="6" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Op. Rank" Margin ="5,0,5,0" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" />
+        <Button Grid.Column="2" Grid.Row="2" Content="guard"    Command="{Binding CheckCommand}" CommandParameter="guard"/>
+        <Button Grid.Column="2" Grid.Row="3" Content="debuff"   Command="{Binding CheckCommand}" CommandParameter="debuff"/>
+        <Button Grid.Column="2" Grid.Row="4" Content="dps"      Command="{Binding CheckCommand}" CommandParameter="dps"/>
+        <Button Grid.Column="2" Grid.Row="5" Content="survival" Command="{Binding CheckCommand}" CommandParameter="survival"/>
+        <Button Grid.Column="2" Grid.Row="4" Content="healing"  Command="{Binding CheckCommand}" CommandParameter="healing"/>
         <TextBlock x:Name="resultBox" Grid.Column="5" Grid.Row="5" Margin="0,0,0,5" Width="200" Height="200" Text="{Binding StringResult, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

@@ -9,33 +9,7 @@ using System.Windows.Input;
 
 namespace Arknight_Recruit_Calculator
 {
-    public class Character : IEquatable<Character>
-    {
-        public string OP_Name { get; set; }
-        public int Star_Rarity { get; set; }
-
-        public Character(string name, int star)
-        {
-            OP_Name = name;
-            Star_Rarity = star;
-        }
-
-        public bool Equals(Character other)
-        {
-            return this.OP_Name.Equals(other.OP_Name) && this.Star_Rarity.Equals(other.Star_Rarity);
-        }
-
-        public static bool operator== (Character a, Character b)
-        {
-            return a.OP_Name.Equals(b.OP_Name) && a.Star_Rarity.Equals(b.Star_Rarity);
-        }
-
-        public static bool operator!= (Character a, Character b)
-        {
-            return !(a==b);
-        }
-
-    }
+    
 
     public class MainWindowViewModel : BaseViewModel
     {
@@ -53,7 +27,7 @@ namespace Arknight_Recruit_Calculator
 
         //Dictionary of tag buttons for UI
         private Dictionary<string, bool> ui_Buttons = new Dictionary<string, bool>();
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb;
         private string _stringResult;
 
         #region Properties
@@ -155,6 +129,7 @@ namespace Arknight_Recruit_Calculator
         #region function
         void generate_tags(List<string> user_input)
         {
+            sb = new StringBuilder();
             for (int a = 0; a < user_input.Count; ++a)
             {
                 if (recruit_tags[user_input[a]].Count > 0)
