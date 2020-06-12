@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Arknight_Recruit_Calculator"
         mc:Ignorable="d" FontSize="18"
-        Title="Arknight's Recruit Calculator" Height="450" Width="800">
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        Title="Arknight's Recruit Calculator" Height="800" Width="900">
+    
+    
+    
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -20,7 +23,7 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -32,38 +35,38 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="1" Grid.Row="1" Text="Arknight Recruit Calculator" Margin ="0,0,0,0" Padding="150,0,150,0" FontSize="25" FontWeight="SemiBold" Background="Aquamarine" HorizontalAlignment="Center" Grid.ColumnSpan="6" />
-        <TextBlock Grid.Column="1" Grid.Row="2" Text="Operator Rank" Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="1" Grid.Row="3" Text="Posistion" Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="1" Grid.Row="4" Text="Classes" Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Center" />
-        <TextBlock Grid.Column="1" Grid.Row="6" Text="Affix" Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Center" />
-        <Button Grid.Column="2" Grid.Row="2" Content="Senior Operator"  Command="{Binding CheckCommand}" CommandParameter="senior_operator"/>
-        <Button Grid.Column="2" Grid.Row="3" Content="Melee"            Command="{Binding CheckCommand}" CommandParameter="melee"/>
-        <Button Grid.Column="3" Grid.Row="3" Content="Ranged"           Command="{Binding CheckCommand}" CommandParameter="ranged"/>
-        <Button Grid.Column="2" Grid.Row="4" Content="Guard"            Command="{Binding CheckCommand}" CommandParameter="guard"/>
-        <Button Grid.Column="3" Grid.Row="4" Content="Medic"            Command="{Binding CheckCommand}" CommandParameter="medic"/>
-        <Button Grid.Column="4" Grid.Row="4" Content="Vanguard"         Command="{Binding CheckCommand}" CommandParameter="vanguard"/>
-        <Button Grid.Column="5" Grid.Row="4" Content="Caster"           Command="{Binding CheckCommand}" CommandParameter="caster"/>
-        <Button Grid.Column="6" Grid.Row="4" Content="Sniper"           Command="{Binding CheckCommand}" CommandParameter="sniper"/>
-        <Button Grid.Column="2" Grid.Row="5" Content="Defender"         Command="{Binding CheckCommand}" CommandParameter="defender"/>
-        <Button Grid.Column="3" Grid.Row="5" Content="Supporter"        Command="{Binding CheckCommand}" CommandParameter="supporter"/>
-        <Button Grid.Column="4" Grid.Row="5" Content="Specialist"       Command="{Binding CheckCommand}" CommandParameter="specialist"/>
-        <Button Grid.Column="2" Grid.Row="6" Content="Healing"          Command="{Binding CheckCommand}" CommandParameter="healing"/>
-        <Button Grid.Column="3" Grid.Row="6" Content="Support"          Command="{Binding CheckCommand}" CommandParameter="support"/>
-        <Button Grid.Column="4" Grid.Row="6" Content="DPS"              Command="{Binding CheckCommand}" CommandParameter="dps"/>
-        <Button Grid.Column="5" Grid.Row="6" Content="AoE"              Command="{Binding CheckCommand}" CommandParameter="aoe"/>
-        <Button Grid.Column="6" Grid.Row="6" Content="Slow"             Command="{Binding CheckCommand}" CommandParameter="slow"/>
-        <Button Grid.Column="6" Grid.Row="6" Content="Survival"         Command="{Binding CheckCommand}" CommandParameter="survival"/>
-        <Button Grid.Column="2" Grid.Row="7" Content="Defence"          Command="{Binding CheckCommand}" CommandParameter="defence"/>
-        <Button Grid.Column="3" Grid.Row="7" Content="Debuff"           Command="{Binding CheckCommand}" CommandParameter="debuff"/>
-        <Button Grid.Column="4" Grid.Row="7" Content="Shift"            Command="{Binding CheckCommand}" CommandParameter="shift"/>
-        <Button Grid.Column="5" Grid.Row="7" Content="Crowd Control"    Command="{Binding CheckCommand}" CommandParameter="crowd_control"/>
-        <Button Grid.Column="6" Grid.Row="7" Content="Nuker"            Command="{Binding CheckCommand}" CommandParameter="nuker"/>
-        <Button Grid.Column="2" Grid.Row="8" Content="Summon"           Command="{Binding CheckCommand}" CommandParameter="summon"/>
-        <Button Grid.Column="3" Grid.Row="8" Content="Fast Redeploy"    Command="{Binding CheckCommand}" CommandParameter="fast_redeploy"/>
-        <Button Grid.Column="4" Grid.Row="8" Content="DP-Recovery"     Command="{Binding CheckCommand}" CommandParameter="dp_recovery"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" Text="Arknight Recruit Calculator" Margin ="0,0,0,10" Padding="150,0,150,0" FontSize="25" FontWeight="SemiBold" Background="Aquamarine" HorizontalAlignment="Center" Grid.ColumnSpan="6" />
+        <TextBlock Grid.Column="1" Grid.Row="2" Text="Operator Rank"    Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Left" />
+        <TextBlock Grid.Column="1" Grid.Row="3" Text="Posistion"        Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Left" />
+        <TextBlock Grid.Column="1" Grid.Row="4" Text="Classes"          Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Left" />
+        <TextBlock Grid.Column="1" Grid.Row="6" Text="Affix"            Margin ="5,5,5,5" Padding="10,0,10,0" FontWeight="SemiBold"  Background="DarkGray" HorizontalAlignment="Left" />
+        <ToggleButton Grid.Column="2" Grid.Row="2" Content="Senior Operator"  Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="senior_operator"/>
+        <ToggleButton Grid.Column="2" Grid.Row="3" Content="Melee"            Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="melee"/>
+        <ToggleButton Grid.Column="3" Grid.Row="3" Content="Ranged"           Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="ranged"/>
+        <ToggleButton Grid.Column="2" Grid.Row="4" Content="Guard"            Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="guard"/>
+        <ToggleButton Grid.Column="3" Grid.Row="4" Content="Medic"            Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="medic"/>
+        <ToggleButton Grid.Column="4" Grid.Row="4" Content="Vanguard"         Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="vanguard"/>
+        <ToggleButton Grid.Column="5" Grid.Row="4" Content="Caster"           Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="caster"/>
+        <ToggleButton Grid.Column="6" Grid.Row="4" Content="Sniper"           Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="sniper"/>
+        <ToggleButton Grid.Column="2" Grid.Row="5" Content="Defender"         Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="defender"/>
+        <ToggleButton Grid.Column="3" Grid.Row="5" Content="Supporter"        Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="supporter"/>
+        <ToggleButton Grid.Column="4" Grid.Row="5" Content="Specialist"       Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="specialist"/>
+        <ToggleButton Grid.Column="2" Grid.Row="6" Content="Healing"          Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="healing"/>
+        <ToggleButton Grid.Column="3" Grid.Row="6" Content="Support"          Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="support"/>
+        <ToggleButton Grid.Column="4" Grid.Row="6" Content="DPS"              Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="dps"/>
+        <ToggleButton Grid.Column="5" Grid.Row="6" Content="AoE"              Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="aoe"/>
+        <ToggleButton Grid.Column="6" Grid.Row="6" Content="Slow"             Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="slow"/>
+        <ToggleButton Grid.Column="6" Grid.Row="6" Content="Survival"         Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="survival"/>
+        <ToggleButton Grid.Column="2" Grid.Row="7" Content="Defence"          Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="defence"/>
+        <ToggleButton Grid.Column="3" Grid.Row="7" Content="Debuff"           Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="debuff"/>
+        <ToggleButton Grid.Column="4" Grid.Row="7" Content="Shift"            Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="shift"/>
+        <ToggleButton Grid.Column="5" Grid.Row="7" Content="Crowd Control"    Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="crowd_control"/>
+        <ToggleButton Grid.Column="6" Grid.Row="7" Content="Nuker"            Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="nuker"/>
+        <ToggleButton Grid.Column="2" Grid.Row="8" Content="Summon"           Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="summon"/>
+        <ToggleButton Grid.Column="3" Grid.Row="8" Content="Fast Redeploy"    Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="fast_redeploy"/>
+        <ToggleButton Grid.Column="4" Grid.Row="8" Content="DP-Recovery"      Margin ="5,5,5,5" Padding="10,0,10,0" Command="{Binding CheckCommand}" CommandParameter="dp_recovery"/>
 
-        <TextBlock x:Name="resultBox" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="6" TextWrapping="Wrap" Text="{Binding StringResult, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="resultBox" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="6" Margin ="10,5,5,5" Height="420" Width="850" TextWrapping="Wrap" Text="{Binding StringResult, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
 </Window>

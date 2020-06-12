@@ -410,7 +410,7 @@ namespace Arknight_Recruit_Calculator
                 //    results.Foreground = Gray;
                 //}
             }
-            results += tag[tag.Count - 1].OP_Name;
+            results += tag[tag.Count - 1].OP_Name + "\n";
             return results;
         }
         List<Character> compare_tags(List<Character> tag1, List<Character> tag2)
